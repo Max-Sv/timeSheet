@@ -1,0 +1,47 @@
+<div class="signUp__page">
+    <div class="signUp__page_image">
+      <div class="image">
+      </div>
+    </div>
+    <div class="signUp__page_content">
+      <div class="signUp">
+        <h1>Sign Up</h1>
+        <button class="sign__button_google" mat-raised-button (click)="socialSignIn()" >
+          <img src="assets/image/new-google-favicon-512.svg" alt="">
+          <p>Sign Up with Google</p>
+        </button>
+        <div class="form-container">
+          <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+            <div class="form-item">
+              <mat-form-field>
+                <input matInput type="text" id="name" name="name" placeholder="Full Name" ngModel required>
+                <mat-error>Field must not be empty</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-item">
+              <mat-form-field>
+                <input matInput type="email" id="email" name="email" placeholder="Email" ngModel email required #emailInput="ngModel">
+                <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty</mat-error>
+                <mat-error *ngIf="!emailInput.hasError('required')">Email is invalid</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-item">
+              <mat-form-field hintLabel="Should be at least 6 characters long">
+                <input matInput type="password" id="password" name="password" placeholder="Password" ngModel #pwInput="ngModel" required minlength="6" [type]="hide ? 'password' : 'text'">
+                <mat-hint align="end">{{ pwInput.value?.length }}/6</mat-hint>
+                <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? "visibility_off" : "visibility"}}</mat-icon>
+                </a>
+              </mat-form-field>
+            </div>
+            <div>
+              <button class="signUpButton" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Sign Up</button>
+            </div>
+            <div>
+              <p>Already have an account? <a routerLink="/login">Sign In</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

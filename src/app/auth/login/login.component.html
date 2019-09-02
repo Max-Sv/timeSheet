@@ -1,0 +1,43 @@
+<div class="login__page">
+    <div class="login__page_image">
+      <div class="image">
+      </div>
+    </div>
+    <div class="login__page_content">
+      <div class="signIn">
+        <h1>Sign In</h1>
+        <button class="sign__button_google" mat-raised-button (click)="socialSignIn()" >
+          <img src="assets/image/new-google-favicon-512.svg" alt="">
+          <p>Sign In with Google</p>
+        </button>
+        <div class="form-container">
+          <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+            <div class="form-item">
+              <mat-form-field>
+                <input matInput type="email" id="email" name="email" placeholder="Email" ngModel email required #emailInput="ngModel">
+                <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty</mat-error>
+                <mat-error *ngIf="!emailInput.hasError('required')">Email is invalid</mat-error>
+              </mat-form-field>
+            </div>
+            <a routerLink="/restore-password" class="forgot-password">Forgot password?</a>
+            <div class="form-item">
+              <mat-form-field hintLabel="Should be at least 6 characters long">
+                <input type="password" id="password" name="password" matInput placeholder="Password" ngModel #pwInput="ngModel" required minlength="6" [type]="hide ? 'password' : 'text'">
+                <mat-hint align="end">{{ pwInput.value?.length }}/6</mat-hint>
+                <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? "visibility_off" : "visibility"}}</mat-icon>
+                </a>
+              </mat-form-field>
+            </div>
+            <div>
+              <button type="submit" class="signInButton" mat-raised-button color="primary" [disabled]="form.invalid">Sign In</button>
+            </div>
+            <div>
+              <p>I don't have account <a routerLink="/signup">Sign Up</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>

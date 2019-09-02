@@ -1,0 +1,15 @@
+<mat-drawer-container class="container">
+  <mat-drawer mode="side" opened>
+    <app-logo-user-company
+      [currentUser]="currentUser"
+      [firstCompany]="firstCompany"
+      (onChanged)="onChanged($event)"
+    ></app-logo-user-company>
+    <app-menu [currentUser]="currentUser"></app-menu>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
